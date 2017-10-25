@@ -60,9 +60,17 @@ int newIcey(lua_State* L)
 	return 1;
 }
 
+int angry(lua_State* L)
+{
+	Icey* icey = (Icey*)lua_touserdata(L,1);
+	icey->angry();
+	return 0;
+}
+
 static const luaL_Reg clib[] = 
 {
 	{"new",newIcey},
+	{"angry",angry},
 	{NULL,NULL}
 };
 
@@ -72,10 +80,12 @@ int luaopen_icey(lua_State *L)
 	luaL_setfuncs(L,clib,0);
 	lua_setglobal(L,"Icey");
 
+	/*
 	luaL_newmetatable(L,"Iceymt");
 	lua_pushstring(L,"__index");
 	lua_pushuserdata(L,);
 	lua_settable(L,-3);
+	*/
 	return 1;
 }
 
