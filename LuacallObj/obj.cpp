@@ -76,16 +76,15 @@ static const luaL_Reg clib[] =
 
 int luaopen_icey(lua_State *L)
 {
-	lua_newtable(L);
+	lua_newtable(L);			// stack 1
 	luaL_setfuncs(L,clib,0);
 	lua_setglobal(L,"Icey");
 
-	/*
-	luaL_newmetatable(L,"Iceymt");
-	lua_pushstring(L,"__index");
-	lua_pushuserdata(L,);
+	luaL_newmetatable(L,"Iceymt");	// stack 2
+	lua_pushstring(L,"__index");	// stack 3
+	lua_pushvalue(L,-3);			// stack 4  -3 means 1
 	lua_settable(L,-3);
-	*/
+
 	return 1;
 }
 
